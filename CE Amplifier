@@ -1,0 +1,31 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Circuit parameters
+Vcc = 12       # Supply voltage (V)
+Rc = 2e3       # Collector resistor (ohms)
+Re = 1e3       # Emitter resistor (ohms)
+beta = 100      # Transistor current gain
+
+# Input signal
+t = np.linspace(0, 0.02, 1000)
+Vin = 0.01 * np.sin(2 * np.pi * 500 * t)  # 10 mV, 500 Hz
+
+# Approximate voltage gain
+Av = -Rc / Re
+
+# Output signal
+Vout = Av * Vin
+
+# Plot input and output
+plt.plot(t, Vin, label="Input Voltage")
+plt.plot(t, Vout, label="Output Voltage")
+
+plt.xlabel("Time (s)")
+plt.ylabel("Voltage (V)")
+plt.title("Common-Emitter Amplifier Simulation")
+plt.legend()
+plt.grid()
+plt.show()
+
+print("Voltage Gain =", Av)
